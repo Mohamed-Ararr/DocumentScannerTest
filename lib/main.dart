@@ -8,7 +8,7 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -49,15 +49,14 @@ class _MyAppState extends State<MyApp> {
     List<String> pictures;
     try {
       pictures = await CunningDocumentScanner.getPictures(
-            isGalleryImportAllowed: true,
-          ) ??
-          [];
+        isGalleryImportAllowed: true,
+      ) ?? [];
       if (!mounted) return;
       setState(() {
         _pictures = pictures;
       });
     } catch (exception) {
-      debugPrint(exception.toString());
+      // Handle exception here
     }
   }
 }
